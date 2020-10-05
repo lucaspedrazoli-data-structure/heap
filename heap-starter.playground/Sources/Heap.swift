@@ -4,7 +4,7 @@ public struct Heap<Element: Equatable> {
   var elements: [Element] = []
   let sort: (Element, Element) -> Bool
 
-  var isEmpty: Bool {
+  public var isEmpty: Bool {
     elements.isEmpty
   }
 
@@ -13,7 +13,7 @@ public struct Heap<Element: Equatable> {
   }
 
 
-  init(sort: @escaping (Element, Element) -> Bool,
+  public init(sort: @escaping (Element, Element) -> Bool,
        elements: [Element] = []) {
     self.sort = sort
     self.elements = elements
@@ -41,7 +41,7 @@ public struct Heap<Element: Equatable> {
     (index - 1) / 2
   }
 
-  mutating func remove() -> Element? {
+  public mutating func remove() -> Element? {
     guard !isEmpty else {
       return nil
     }
