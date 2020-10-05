@@ -64,5 +64,21 @@ public struct Heap<Element: Equatable> {
     }
   }
 
+  mutating func insert(_ element: Element) {
+    elements.append(element)
+    siftUp(from: elements.count - 1)
+  }
+
+  mutating func  siftUp(from index: Int) {
+    var child = index
+    var parent = parentIndex(ofAchildAt: child)
+    while child > 0 && sort(elements[child], elements[parent]) {
+      elements.swapAt(child, parent)
+      child = parent
+      parent = parentIndex(ofAchildAt: child)
+    }
+  }
+
+  
 
 }
