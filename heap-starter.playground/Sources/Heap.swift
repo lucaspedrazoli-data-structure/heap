@@ -13,8 +13,16 @@ public struct Heap<Element: Equatable> {
   }
 
 
-  init(sort: @escaping (Element, Element) -> Bool) {
+  init(sort: @escaping (Element, Element) -> Bool,
+       elements: [Element] = []) {
     self.sort = sort
+    self.elements = elements
+
+    if !elements.isEmpty {
+      for i in stride(from: elements.count, through: 0, by: -1) {
+        siftDown(from: i)
+      }
+    }
   }
 
   func peek() -> Element? {
@@ -114,5 +122,4 @@ public struct Heap<Element: Equatable> {
     }
     return nil
   }
-
 }
