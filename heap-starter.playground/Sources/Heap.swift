@@ -79,6 +79,22 @@ public struct Heap<Element: Equatable> {
     }
   }
 
+  mutating func remove(at index: Int) -> Element? {
+    guard index < elements.count else {
+      return nil
+    }
+    if index == elements.count - 1 {
+      return elements.removeLast()
+    } else {
+      defer {
+        siftDown(from: index)
+        siftUp(from: index)
+      }
+      elements.swapAt(index, elements.count - 1)
+    }
+    return elements.removeLast()
+  }
+
   
 
 }
