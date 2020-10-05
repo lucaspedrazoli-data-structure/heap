@@ -95,6 +95,24 @@ public struct Heap<Element: Equatable> {
     return elements.removeLast()
   }
 
-  
+  func index(of element: Element, startingAt i: Int) -> Int? {
+    if i >= count {
+      return nil
+    }
+    if sort(element, elements[i]) {
+      return nil
+    }
+    if element == elements[i] {
+      return i
+    }
+    if let j = index(of: element,
+                     startingAt: leftChildIndex(ofParentAt: i)) {
+      return j
+    }
+    if let j = index(of: element, startingAt: rightChildIndex(ofParentAt: i)) {
+      return j
+    }
+    return nil
+  }
 
 }
